@@ -45,9 +45,18 @@ h1 {
 .row:nth-child(2) {
   /* justify-items: center;
   align-items: center; */
-
   background-color: rgb(190, 248, 229);
 }
 .row:nth-child(2) #clearItem {
   background-color: #e71313;
+}
+#my-list > li {
+  font-weight: 467;
+  font-size: 130%;
+}
+
+#my-list > li > button {
+  background-color: #f13535;
+  color: #0f0;
+  font-weight: 900;
 }
