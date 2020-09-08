@@ -1,33 +1,65 @@
-/* a ul que vamos adiciona LI filhos */
+/* pegando a ul que será inserido 
+os elementos filhos LIs 
+*/
 let ul = document.getElementById("my-list");
 /*  */
 
-/*   criar funçoes pra para adicionar e remover as tarefas e outras para adionar elementos */
-/* e outras para adicionar e elementos e remover com o clique de botao no código abaixo */
+/* a seguir duas funçoões
+uma para adicionar elementos LIs, ou seja
+adiconar itens com clique do mouse.
+e criar um outra função de remover itens  caso queira
+ */
 
-/*função que adiciona uma tarefa */
+/*função que adiciona um elemento,
+inscrito no input e add com button add tarefa 
+*/
 const addTarefa = function () {
-  /* se o valor texto do task for diferente de vazio faça */
+  /* um if fazendo uma condição,
+  perguntando se tem um texto dentro do inputa
+  e so rodas codido de adicinar se tiver texto
+   */
   if (document.getElementById("task").value != "") {
-    /* pegar o numero de filhos da ul my-list */
+    /* variavel que pesquisa o numero
+    de filhos da ul de id = my-list,
+    começando por 1 e nao 0
+    */
     const numeroItemsFilhos = ul.childElementCount + 1;
+    /*  */
 
-    /* texto digitao do item é adicionado */
-    const textoDigitado = document.getElementById("task").value;
+    /* seguindo o if, pegando o texto
+    digitado e inserido item filho 
+    */
+    const addTarefaDigitado = document.getElementById("task").value;
+    /*  */
 
-    /* botaão criado usando template string */
-    const btnString = `<button id="botaoDel" onClick="apagarItem()">Delete me</button>`;
+    /* criando um botão usando template string */
+    const btnString = `<button 
+                        id="botaoDel" 
+                        onClick="apagarItem()"> X 
+                      </button>`;
+    /*  */
 
-    /* criando a li com template string e inserindo butoes e texto */
+    /* criando uma li com
+     template string e 
+     inserindo butoes de remover itens 
+     e texto digitado
+    */
     const insert = `<li id="item${numeroItemsFilhos}">
-                        ${textoDigitado}
+                        ${addTarefaDigitado}
                         ${btnString}
-                      </li>`;
+                    </li>`;
+    /*  */
 
-    /* inserindo os items após click no botão */
+    /* inserindo os items após click no botão
+    usando o metodo insertAdjacentHTML
+    antes do fim da ul, ou seja sempre
+    abaixo dos itemas anteriores */
     let inserir = ul.insertAdjacentHTML("beforeend", insert);
+    /*  */
 
-    /*adicionar valor digitado no input, e deixar vazio novamente*/
+    /* após adicionar item,
+    resetar o value e deixar vazio novamente 
+    */
     let resetValueInput = (document.getElementById("task").value = "");
     /*  */
   } /* end if  que ver se é diferente de vazio o value de task*/
@@ -43,8 +75,24 @@ const apagarItem = () => {
   /* modelo 1 de pegar atributo botao delete me */
   let buttonDel = document.querySelector("#my-list li button");
 
-  let buttonDel1 = document.querySelector("#botaoDel").parentNode.parentNode;
+  let chegarNaUl = document.querySelector("#botaoDel").parentNode.parentNode;
 
   // buttonDel.parentElement.parentNode.removeChild(buttonDel.parentNode);
-  buttonDel1.removeChild(buttonDel.parentNode);
+  chegarNaUl.removeChild(buttonDel.parentElement);
+
+  /* renumerar os item de forma progressiva */
+  const renumerarItems = () => {
+    /* numero de filhos do ul, a my-list, que é tamanho máximo for*/
+    const numeroItems = chegarNaUl.childElementCount;
+
+    /* array com todos filhos de UL, todas LI */
+    const arrLIs = document.querySelectorAll("#my-list li");
+
+    /* for para alterar o texto dos id para numero crecente, item1, item2...*/
+    for (let i = 0; i <= numeroItems; i++) {
+      arrLIs[i].id = `item${i + 1}`;
+    }
+  };
+
+  return renumerarItems();
 };
