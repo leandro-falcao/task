@@ -14,9 +14,14 @@ body,
 }
 /* alteracoes no form */
 .row form {
-  padding: 2%;
+  padding: 4%;
 }
 
+form > input:nth-child(1) {
+  border-radius: 2rem;
+  padding: 0.61rem;
+  outline: #0f0;
+}
 /* alteracoes no input do for de texto */
 .row form :nth-child(1) {
   color: #e71313;
